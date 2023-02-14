@@ -1,4 +1,4 @@
-import {initializeApp} from 'firebase/app'
+import { initializeApp } from 'firebase/app'
 import {getFirestore} from 'firebase/firestore'
 import {getAuth} from 'firebase/auth'
 
@@ -17,4 +17,4 @@ let db = getFirestore(app)
 
 let auth = getAuth(app)
 
-export default {app,db,auth}
+export {db,auth}
