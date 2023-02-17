@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <div v-if="users.length>0" class="userList-container">
+        <div class="userList-container">
             <div v-for="user in withoutMyAcc" :key="user.id">
                 <div class="py-3 border-none border-bottom">
                     <router-link :to="{name:'ChatConversation',params:{fromid:myUserId,toid:user.user_id}}">
@@ -11,9 +11,9 @@
                 </div>
             </div>
         </div>
-        <div v-else-if="users.length==0">
+        <!-- <div v-else-if="users.length==0"> -->
             <Loader></Loader>
-        </div>  
+        <!-- </div>   -->
     </div>
     
 
@@ -64,9 +64,12 @@ export default {
 
 <style>
 .userList-container{
-    height:90vh;
+    height:80vh;
     overflow-y:scroll;
     margin-top:15px;
     padding-top:5px;
+}
+.userList-container a{
+    text-decoration:none;
 }
 </style>

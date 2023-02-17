@@ -1,12 +1,12 @@
 <template>
     
-    <div class="container-fluid">
+    <div class="container-fluid chat-containers">
         <div class="row">
             <div class="col-3 bg-white navbars">
                 <AccountNav></AccountNav>
                 <UserLists></UserLists>
             </div>
-            <div class="col-9">
+            <div class="col-9 px-0">
                 <EachChat></EachChat>    
             </div>
 
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import UserLists from '../components/userLists'
+import UserLists from '../components/userLists.vue'
 import AccountNav from '../components/AccountNav.vue';
 import getUser from '../composables/getUser';
 import EachChat from '@/components/EachChat.vue';
@@ -44,5 +44,9 @@ export default {
 </script>
 
 <style>
+.chat-containers{
+    height:100vh;
 
+    overflow:hidden;
+}
 </style>

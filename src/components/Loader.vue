@@ -1,7 +1,7 @@
 <template>
 
     <div class="spin">
-        <div class="circle">d</div>
+        <div class="circle"></div>
     </div>
 
 </template>

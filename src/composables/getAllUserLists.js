@@ -12,7 +12,7 @@ let getAllUsers = ()=>{
         try{
             
             await new Promise((resolve,reject)=>{
-                setTimeout(resolve,2000)
+                setTimeout(resolve,300)
             })
 
             let getUsers = await getDocs(collection(db,'users'));
