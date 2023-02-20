@@ -3,8 +3,8 @@
     <div class="container-fluid chat-containers">
         <div class="row">
             <div class="col-3 bg-white navbars">
-                <AccountNav></AccountNav>
-                <UserLists></UserLists>
+                <AccountNav @searchPeople="searchPeople"></AccountNav>
+                <UserLists :searchValue="searchValue"></UserLists>
             </div>
             <div class="col-9 px-0">
                 <EachChat></EachChat>    
@@ -22,6 +22,8 @@ import getUser from '../composables/getUser';
 import EachChat from '@/components/EachChat.vue';
 import { watch } from 'vue'
 import { useRouter } from 'vue-router';
+import { ref,onUpdated } from 'vue';
+
 export default {
     components: {
     UserLists, AccountNav,EachChat },
@@ -36,8 +38,12 @@ export default {
             }
         })
 
+        let searchValue = ref('');
+        let searchPeople = (value)=>{
+            searchValue.value = value;
+        }
 
-        return { };
+        return { searchPeople , searchValue};
     }
 
 }

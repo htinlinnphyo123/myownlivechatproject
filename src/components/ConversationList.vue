@@ -29,8 +29,8 @@
                 </div>
               </div>
             </div>
-            <div v-else class="d-flex align-items-center">
-              <span class="h2 text-center text-dark">No chat or conversation with this friend</span>
+            <div v-else class="my-5">
+              <p class="h2 text-center text-dark">Start a chat with this friend.</p>
             </div>
         </div>
     </div>

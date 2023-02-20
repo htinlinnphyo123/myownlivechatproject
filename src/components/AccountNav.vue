@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="mt-3">
-            <input type="text" style="font-family:Arial,'Font Awesome 6 Free'" placeholder=" &#xf002; Search Messenger" class="fas fa-search w-100 searchs">
+            <input type="text" style="font-family:Arial,'Font Awesome 6 Free'" placeholder=" &#xf002; Search People" class="fas fa-search w-100 searchs" @input="searchPeople" v-model="searchValue">
         </div>
     </div>
 
@@ -22,11 +22,12 @@
 <script>
 import useSignout from '../composables/useSignout'
 import {auth} from '../firebase/config'
+import { ref } from 'vue'
 
 export default {
 
-    setup(){
-        let {error,signoutReq} = useSignout();
+    setup(props,ctx){
+        let {errors,signoutReq} = useSignout();
         
         let user = auth.currentUser;
 
@@ -39,8 +40,15 @@ export default {
 
         }
 
+        //for search feature
+        let searchValue = ref('');
+        let searchPeople = ()=>{
+            
+            ctx.emit('searchPeople',searchValue);
 
-        return {signOutFun,user}
+        }
+
+        return {signOutFun,user,searchPeople,searchValue}
     }
 
 }

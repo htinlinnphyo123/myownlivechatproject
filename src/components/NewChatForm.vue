@@ -22,6 +22,9 @@ import { timestamp } from '../firebase/config'
 import {onUpdated, ref , watch } from 'vue'
 import newChat from '../composables/newChat'
 import { useRoute } from 'vue-router'
+import { collection, query, where,updateDoc } from 'firebase/firestore';
+import {db} from '../firebase/config';
+
 export default {
 
     props : ['fromid','toid'],
@@ -34,32 +37,29 @@ export default {
         let message = ref('');
         let {createChat,error} = newChat();
 
-        console.log(toid.value)
-
+        //listen route change
         watch(route,()=>{
             toid.value = route.params.toid;
+            message.value = '';
         })
 
-
+        // send function
         let sendFunction = async()=>{
 
             if(message.value!==''){
                 
                 let chat = ref({
-                chatRoomId : fromid+toid.value,
-                senderId : fromid,
-                receiverId : toid.value,
-                message : message.value,
-                sendTime : timestamp
+                    chatRoomId : fromid+toid.value,
+                    senderId : fromid,
+                    receiverId : toid.value,
+                    message : message.value,
+                    sendTime : timestamp,
                 })
                 await createChat(chat.value);
 
                 message.value = '';
-            
             }
-    
         }
-        
 
         return {sendFunction,message}
     }

@@ -1,7 +1,6 @@
 import {auth,db} from '../firebase/config';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { ref } from 'vue';
-import { collection,setDoc,doc } from 'firebase/firestore';
 
 let error = ref('');
 let create = async(email,password,displayName,userProfilePicSrc)=>{

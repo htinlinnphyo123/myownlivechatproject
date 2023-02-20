@@ -2,7 +2,7 @@ import {auth} from '../firebase/config'
 import { signOut } from '@firebase/auth'
 import { ref } from 'vue'
 
-let error = ref('');
+let errors = ref('');
 
 let useSignout = ()=>{
 
@@ -14,14 +14,14 @@ let useSignout = ()=>{
             
         }
         catch(err){
-            error.value = err.message;
+            errors.value = err.message;
         }
 
 
     }
 
 
-    return {error,signoutReq}
+    return {errors,signoutReq}
 }
 
 
