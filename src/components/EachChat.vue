@@ -14,9 +14,7 @@
             </div>
         </div>
         <div class="conversations">
-            <div>
-                <ConversationList></ConversationList>
-            </div>
+            <ConversationList :fromid="fromid" :toid="toid"></ConversationList>
         </div>
         <div class="typings px-3 py-3">
             <NewChatForm :fromid="fromid" :toid="toid"></NewChatForm>
@@ -53,6 +51,7 @@ export default {
         //for route change with users
         watch(route, () => {
             toid.value = route.params.toid;
+            // console.log(toid.value);
         });
         //START CHAT MESSAGE
         return { fromid, toid, friInfo };
@@ -68,19 +67,26 @@ export default {
     height:100vh;
     background-color:#f4f4f4;
     border-left:1px solid #eee;
+
+    position:relative;
 }
 .fri-navs{
     height:10%;
     background-color:#fff;
+    border-bottom:1px solid #eee;
 }
 .conversations{
-    height:80%;
-    background-color:yellow;
-    overflow-y:scroll;
+    max-height:80%;
+    background-color:#fff;
 }
 .typings{
+    width:100%;
     height:10%;
     background-color:#eee;
+
+    position:absolute;
+    left:0;
+    bottom:0;
 }
 .fa-solid{
     cursor:pointer;

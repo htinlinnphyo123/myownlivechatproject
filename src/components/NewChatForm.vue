@@ -19,34 +19,44 @@
 
 <script>
 import { timestamp } from '../firebase/config'
-import {ref} from 'vue'
+import {onUpdated, ref , watch } from 'vue'
 import newChat from '../composables/newChat'
+import { useRoute } from 'vue-router'
 export default {
 
     props : ['fromid','toid'],
     setup(props){
 
         let fromid = props.fromid;
-        let toid = props.toid;
+        let route = useRoute();
+        let toid = ref(props.toid);
 
         let message = ref('');
-        let chatRoomId = ref(fromid+toid);
         let {createChat,error} = newChat();
 
+        console.log(toid.value)
+
+        watch(route,()=>{
+            toid.value = route.params.toid;
+        })
+
+
         let sendFunction = async()=>{
-            
-            let chat = ref({
-                chatRoomId : chatRoomId.value,
+
+            if(message.value!==''){
+                
+                let chat = ref({
+                chatRoomId : fromid+toid.value,
                 senderId : fromid,
-                receiverId : toid,
+                receiverId : toid.value,
                 message : message.value,
                 sendTime : timestamp
-            })
-            console.log(chat.value);
-            
-            await createChat(chat.value);
+                })
+                await createChat(chat.value);
 
-            message.value = '';
+                message.value = '';
+            
+            }
     
         }
         
